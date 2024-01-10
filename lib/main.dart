@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_helpdesk/home.dart';
-import 'package:new_helpdesk/menu.dart';
+import 'package:new_helpdesk/login.dart';
 
 void main() => runApp(const MyApp());
 
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MenuPage(),
+      home: const LoginPage(),
     );
   }
 }
