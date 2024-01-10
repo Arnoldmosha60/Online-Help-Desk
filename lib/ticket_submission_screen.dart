@@ -58,16 +58,35 @@ class _TicketSubmissionScreenState extends State<TicketSubmissionScreen> {
                 },
               ),
               const SizedBox(height: 20),
-              ElevatedButton(
+              RawMaterialButton(
                 onPressed: () {
-                  // Add logic to submit the ticket
-                  if (Form.of(context).validate()) {
-                    // Perform ticket submission logic
-                    // You can make API calls, update databases, etc.
-                    // After successful submission, you can navigate to another screen
-                  }
+
                 },
-                child: const Text('Submit Ticket'),
+                elevation: 0.0,
+                constraints: const BoxConstraints.tightFor(
+                  width: 110.0,
+                  height: 50.0,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  side: const BorderSide(
+                    width: 1,
+                  ),
+                ),
+                fillColor: Colors.blue,
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.send),
+                    SizedBox(width: 5.0,),
+                    Text(
+                      'Submit Ticket',
+                      style: TextStyle(
+                        fontSize: 15.0,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
