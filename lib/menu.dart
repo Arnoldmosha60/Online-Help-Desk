@@ -50,12 +50,12 @@ class _MenuPageState extends State<MenuPage> {
               text: 'Home',
             ),
             GButton(
-              icon: Icons.delivery_dining,
-              text: 'Deliveries',
+              icon: Icons.list,
+              text: 'Tickets',
             ),
             GButton(
-              icon: Icons.history,
-              text: 'History',
+              icon: Icons.send,
+              text: 'Submit',
             ),
           ],
         ),
