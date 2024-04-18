@@ -12,21 +12,18 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Help Desk'),
+        elevation: 5,
+        title: const Text('Help Desk',
+          style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(19, 6, 107, 147),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.settings),
-            tooltip: 'Settings Icon',
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SettingsScreen()),
-              );
-            },
-          ),
-        ],
+        backgroundColor: Colors.lightBlue,
+        leading: IconButton( // Icon placed in the app bar
+          icon: const Icon(Icons.menu), // Menu icon
+          onPressed: () {
+            Scaffold.of(context).openDrawer(); // Open drawer on icon tap
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -85,6 +82,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
+
     );
   }
 }
