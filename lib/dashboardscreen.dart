@@ -1,11 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:fl_chart/fl_chart.dart';
+import 'dart:ui';
+import 'chart/pie_chart.dart';
+import 'chart/piez-chart_data.dart';
+
+List<PieChartSectionData> pieChartSectionData = [
+  PieChartSectionData(
+    value: 20,
+    title: '20%',
+    color: const Color(0xffed733f),
+  ),
+  PieChartSectionData(
+    value: 35,
+    title: '35%',
+    color: const Color(0xff584f84),
+  ),
+  PieChartSectionData(
+    value: 15,
+    title: '15%',
+    color: const Color(0xffd86f9b),
+  ),
+  PieChartSectionData(
+    value: 30,
+    title: '30%',
+    color: const Color(0xffa2663e),
+  ),
+];
 
 class DashboardScreen extends StatelessWidget {
-  const DashboardScreen({super.key});
+  const DashboardScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
     return Scaffold(
       key: scaffoldKey,
       appBar: PreferredSize(
@@ -32,22 +60,16 @@ class DashboardScreen extends StatelessWidget {
           automaticallyImplyLeading: false, // Disable the default leading icon
         ),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              'Welcome to the Dashboard!',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      body: Container(
+        color: const Color(0xfff0f0f0),
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
+          children: <Widget>[
+            ChartContainer(
+                title: 'Pie Chart',
+                color: const Color(0xff24b273),
+                chart: PieChartContent()
             ),
-            SizedBox(height: 20),
-            // Add widgets or data to display on the dashboard
-            // For example:
-            // Text('Total Tickets: 10'),
-            // Text('Open Tickets: 5'),
-            // Add more widgets as needed
           ],
         ),
       ),
@@ -83,13 +105,25 @@ class DashboardScreen extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: const Text('Item 1'),
+              title: const Text('All'),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
               },
             ),
             ListTile(
-              title: const Text('Item 2'),
+              title: const Text('In Progress'),
+              onTap: () {
+                Navigator.pop(context); // Close the drawer
+              },
+            ),
+            ListTile(
+              title: const Text('Closed'),
+              onTap: () {
+                Navigator.pop(context); // Close the drawer
+              },
+            ),
+            ListTile(
+              title: const Text('FAQs'),
               onTap: () {
                 Navigator.pop(context); // Close the drawer
               },

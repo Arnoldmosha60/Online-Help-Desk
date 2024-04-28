@@ -9,6 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  intl: ^0.17.0
+  fl_chart: ^0.35.0
+  equatable: ^2.0.3
 
   cupertino_icons: ^1.0.2
   google_nav_bar: ^5.0.6
@@ -54,3 +57,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
