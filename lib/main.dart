@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:new_helpdesk/drawer_screen.dart';
-import 'package:new_helpdesk/home_mchong0.dart';
-import 'package:new_helpdesk/login.dart';
+import 'package:new_helpdesk/pages/login.dart';
 
 void main() {
   runApp(MyApp());

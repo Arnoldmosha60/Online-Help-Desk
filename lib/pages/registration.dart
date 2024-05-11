@@ -138,7 +138,7 @@ class _SignupPageState extends State<SignupPage> {
                           width: 30.0,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('images/google.png'),
+                                image: AssetImage('assets/images/google.png'),
                                 fit: BoxFit.cover),
                             shape: BoxShape.circle,
                           ),

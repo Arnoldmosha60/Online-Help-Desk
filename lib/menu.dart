@@ -1,8 +1,10 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:new_helpdesk/dashboardscreen.dart';
-import 'package:new_helpdesk/ticket_list_screen.dart';
-import 'package:new_helpdesk/ticket_submission_screen.dart';
+import 'package:new_helpdesk/pages/dashboardscreen.dart';
+import 'package:new_helpdesk/pages/ticket_list_screen.dart';
+import 'package:new_helpdesk/pages/ticket_submission_screen.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
@@ -17,7 +19,7 @@ class _MenuPageState extends State<MenuPage> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [
-    const DashboardScreen(),
+    const Dashboard(), 
     TicketListScreen(),
     const TicketSubmissionScreen(),
   ];

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:new_helpdesk/dashboardscreen.dart';
-import 'package:new_helpdesk/registration.dart';
-import 'drawer_screen.dart';
-import 'menu.dart';
+import 'package:new_helpdesk/pages/registration.dart';
+
+import '../menu.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -123,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                           width: 30.0,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('images/google.png'),
+                                image: AssetImage('assets/images/google.png'),
                                 fit: BoxFit.cover),
                             shape: BoxShape.circle,
                           ),

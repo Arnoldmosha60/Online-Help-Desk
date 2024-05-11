@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:new_helpdesk/drawer_screen.dart';
 import 'dart:ui';
-import 'chart/pie_chart.dart';
-import 'chart/piez-chart_data.dart';
 
 List<PieChartSectionData> pieChartSectionData = [
   PieChartSectionData(
@@ -79,16 +77,7 @@ class DashboardScreen extends StatelessWidget {
         ),
         body: Container(
           color: const Color(0xfff0f0f0),
-          child: ListView(
-            padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
-            children: <Widget>[
-              ChartContainer(
-                  title: 'Pie Chart',
-                  color: const Color(0xff24b273),
-                  chart: PieChartContent()),
-            ],
-          ),
-        ),
+
         // drawer: Drawer(
         //     child: Container(
         //   color: Colors.blueGrey,
@@ -185,7 +174,7 @@ class DashboardScreen extends StatelessWidget {
         //     ),
         //   ),
         // ))
-    );
+    ));
   }
 }
 
