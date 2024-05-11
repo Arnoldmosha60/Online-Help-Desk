@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:new_helpdesk/registration.dart';
 
-import 'menu.dart';
+import 'login.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: SingleChildScrollView(
@@ -29,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: <Widget>[
                     const SizedBox(height: 60.0),
                     const Text(
-                      "Login",
+                      "Sign up",
                       style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
@@ -39,13 +38,24 @@ class _LoginPageState extends State<LoginPage> {
                       height: 20,
                     ),
                     Text(
-                      "Signin to continue to your account",
+                      "Create your account",
                       style: TextStyle(fontSize: 15, color: Colors.grey[700]),
                     )
                   ],
                 ),
                 Column(
                   children: <Widget>[
+                    TextField(
+                      decoration: InputDecoration(
+                          hintText: "Username",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(18),
+                              borderSide: BorderSide.none),
+                          fillColor: Colors.blue.withOpacity(0.1),
+                          filled: true,
+                          prefixIcon: const Icon(Icons.person)),
+                    ),
+                    const SizedBox(height: 20),
                     TextField(
                       decoration: InputDecoration(
                           hintText: "Email",
@@ -69,20 +79,26 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       obscureText: true,
                     ),
+                    const SizedBox(height: 20),
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: "Confirm Password",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(18),
+                            borderSide: BorderSide.none),
+                        fillColor: Colors.blue.withOpacity(0.1),
+                        filled: true,
+                        prefixIcon: const Icon(Icons.password),
+                      ),
+                      obscureText: true,
+                    ),
                   ],
                 ),
                 Container(
                     padding: const EdgeInsets.only(top: 3, left: 3),
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MenuPage(),
-                          ),
-                        );
-
-
+                        // signUp(emailController.text, passwordController.text);
                       },
                       style: ElevatedButton.styleFrom(
                         shape: const StadiumBorder(),
@@ -90,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                         backgroundColor: Colors.blue,
                       ),
                       child: const Text(
-                        "Sign In",
+                        "Sign up",
                         style: TextStyle(fontSize: 20),
                       ),
                     )),
@@ -122,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                           width: 30.0,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('images/google.png'),
+                                image: AssetImage('assets/images/google.png'),
                                 fit: BoxFit.cover),
                             shape: BoxShape.circle,
                           ),
@@ -142,20 +158,21 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const Text("Don't have an account?"),
+                    const Text("Already have an account?"),
                     TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SignupPage(),
-                            ),
-                          );
-                        },
-                        child: const Text(
-                          "Signup",
-                          style: TextStyle(color: Colors.blue),
-                        ))
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LoginPage(),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        "Login",
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                    )
                   ],
                 )
               ],

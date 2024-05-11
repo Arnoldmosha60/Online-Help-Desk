@@ -10,10 +10,10 @@ class CardExampleApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: const Text('Card Sample')),
-        body: Column(
+        body: const Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox(height: 20), // Add some space at the top
+            SizedBox(height: 20), // Add some space at the top
             CardExample(),
           ],
         ),

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_helpdesk/card.dart';
-import 'package:new_helpdesk/login.dart';
-import 'package:new_helpdesk/ticket_list_screen.dart';
+import 'package:new_helpdesk/pages/login.dart';
 
 
 void main() => runApp(const MyApp());

@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -15,20 +17,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        title: const Text('Settings'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'General Settings',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             SwitchListTile(
-              title: Text('Receive Notifications'),
+              title: const Text('Receive Notifications'),
               value: receiveNotifications,
               onChanged: (value) {
                 setState(() {
@@ -37,14 +39,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 // Update user preferences for notifications
               },
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Appearance',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             ListTile(
-              title: Text('Dark Mode'),
+              title: const Text('Dark Mode'),
               trailing: Switch(
                 value: darkMode,
                 onChanged: (value) {
