@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:new_helpdesk/drawer_screen.dart';
-import 'package:new_helpdesk/pages/chart.dart';
 import 'package:new_helpdesk/pages/login.dart';
 
 void main() {
