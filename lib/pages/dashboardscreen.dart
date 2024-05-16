@@ -50,12 +50,12 @@ class _DashboardState extends State<Dashboard> {
                 width: 500, // Adjust width as needed
                 height: 200, // Adjust height as needed
                 child: Card(
-                  elevation: 4,
+                  elevation: 16,
                   margin: EdgeInsets.only(top: 26.0),
                   child: Padding(
                     padding: EdgeInsets.all(16),
                     child: Text(
-                      'Your Card Content Here',
+                      'Online Help Desk',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -102,8 +102,8 @@ class _DashboardState extends State<Dashboard> {
                         children: [
                           const TabBar(
                             tabs: [
-                              Tab(text: 'Tab 1'),
-                              Tab(text: 'Tab 2'),
+                              Tab(text: 'General FAQs'),
+                              Tab(text: 'Technical FAQs'),
                             ],
                           ),
                           const SizedBox(height: 10),
@@ -134,13 +134,15 @@ class _DashboardState extends State<Dashboard> {
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Card(
         elevation: 4,
+        color: Colors.blueAccent,
         child: SizedBox(
           width: _cardWidth,
           child: Center(
             child: Text(
-              'Carousel Item $index',
+              '$index',
               style: const TextStyle(
                 fontSize: 16,
+
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -160,11 +162,11 @@ class _DashboardState extends State<Dashboard> {
         child: Container(
           width: double.infinity,
           height: 100, // Adjust card height as needed
-          color: Colors.blueGrey,
+          color: Colors.blueAccent,
           child: Center(
             child: Text(
               'Tab $tabIndex Card $index',
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.black),
             ),
           ),
         ),
