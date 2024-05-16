@@ -1,4 +1,11 @@
+// ignore_for_file: unused_local_variable, use_build_context_synchronously
+
+import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:new_helpdesk/auth/baseUrl.dart';
+import 'package:new_helpdesk/pages/dashboardscreen.dart';
 
 import 'login.dart';
 
@@ -10,9 +17,69 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _fullnameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _contactController = TextEditingController();
+
+  Future<void> _signUp() async {
+    final Uri url = Uri.parse('http://127.0.0.1:8000/api/auth/register');
+    final Map<String, String> data = {
+      'username': _usernameController.text.toString(),
+      'email': _emailController.text.toString(),
+      'password': _passwordController.text.toString(),
+      'fullname': _fullnameController.text.toString(),
+      'contact': _contactController.text.toString() 
+    };
+
+    try {
+      final http.Response response = await http.post(
+        url,
+        body: JsonEncoder(data as Object? Function(dynamic object)?),
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      if (response.statusCode == 200) {
+        // Registration successful, navigate to dashboard screen
+        if (kDebugMode) {
+          print(response);
+        }
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const Dashboard()),
+        );
+      } else {
+        // Registration failed, navigate back to registration page
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   const SnackBar(
+        //       content: Text('Registration failed. Please try again.')),
+        // );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const SignupPage()),
+        );
+      }
+    } catch (error) {
+      // Handle network or server errors
+      if (kDebugMode) {
+        print('Error occurred: $error');
+      }
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   const SnackBar(
+      //       content: Text('An error occurred. Please try again later.')),
+      // );
+      // Navigate back to registration page on error
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const SignupPage()),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: SingleChildScrollView(
@@ -46,6 +113,19 @@ class _SignupPageState extends State<SignupPage> {
                 Column(
                   children: <Widget>[
                     TextField(
+                      controller: _fullnameController,
+                      decoration: InputDecoration(
+                          hintText: "FullName",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(18),
+                              borderSide: BorderSide.none),
+                          fillColor: Colors.blue.withOpacity(0.1),
+                          filled: true,
+                          prefixIcon: const Icon(Icons.person)),
+                    ),
+                    const SizedBox(height: 20),
+                    TextField(
+                      controller: _usernameController,
                       decoration: InputDecoration(
                           hintText: "Username",
                           border: OutlineInputBorder(
@@ -57,6 +137,7 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                     const SizedBox(height: 20),
                     TextField(
+                      controller: _emailController,
                       decoration: InputDecoration(
                           hintText: "Email",
                           border: OutlineInputBorder(
@@ -68,6 +149,19 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                     const SizedBox(height: 20),
                     TextField(
+                      controller: _contactController,
+                      decoration: InputDecoration(
+                          hintText: "Phone Number",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(18),
+                              borderSide: BorderSide.none),
+                          fillColor: Colors.blue.withOpacity(0.1),
+                          filled: true,
+                          prefixIcon: const Icon(Icons.person)),
+                    ),
+                    const SizedBox(height: 20),
+                    TextField(
+                      controller: _passwordController,
                       decoration: InputDecoration(
                         hintText: "Password",
                         border: OutlineInputBorder(
@@ -79,37 +173,22 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                       obscureText: true,
                     ),
-                    const SizedBox(height: 20),
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: "Confirm Password",
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18),
-                            borderSide: BorderSide.none),
-                        fillColor: Colors.blue.withOpacity(0.1),
-                        filled: true,
-                        prefixIcon: const Icon(Icons.password),
-                      ),
-                      obscureText: true,
-                    ),
                   ],
                 ),
-                Container(
-                    padding: const EdgeInsets.only(top: 3, left: 3),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // signUp(emailController.text, passwordController.text);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: const StadiumBorder(),
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        backgroundColor: Colors.blue,
-                      ),
-                      child: const Text(
-                        "Sign up",
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    )),
+                ElevatedButton(
+                  onPressed: () {
+                    _signUp();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: const StadiumBorder(),
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    backgroundColor: Colors.blue,
+                  ),
+                  child: const Text(
+                    "Sign up",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
                 const Center(child: Text("Or")),
                 Container(
                   height: 45,
@@ -124,7 +203,7 @@ class _SignupPageState extends State<SignupPage> {
                         spreadRadius: 1,
                         blurRadius: 1,
                         offset:
-                        const Offset(0, 1), // changes position of shadow
+                            const Offset(0, 1), // changes position of shadow
                       ),
                     ],
                   ),
@@ -182,4 +261,10 @@ class _SignupPageState extends State<SignupPage> {
       ),
     );
   }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   // TODO: implement build
+  //   throw UnimplementedError();
+  // }
 }
