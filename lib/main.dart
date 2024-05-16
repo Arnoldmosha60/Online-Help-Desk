@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:new_helpdesk/drawer_screen.dart';
+import 'package:new_helpdesk/pages/chart.dart';
 import 'package:new_helpdesk/pages/login.dart';
 
-
-void main() => runApp(const MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Help Desk App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      home: Scaffold(
+        body: Stack(
+          children: [
+            DrawerScreen(),
+            LoginPage()
+          ],
+        ),
       ),
-      home: const LoginPage(),
     );
   }
 }

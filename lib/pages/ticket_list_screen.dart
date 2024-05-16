@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const TicketListApp());
@@ -19,9 +18,9 @@ class TicketListApp extends StatelessWidget {
 
 class TicketListScreen extends StatelessWidget {
   final List<Ticket> tickets = [
-    Ticket(id: '1', title: 'Issue 1', status: 'Open'),
-    Ticket(id: '2', title: 'Issue 2', status: 'In Progress'),
-    Ticket(id: '3', title: 'Issue 3', status: 'Closed'),
+    Ticket(id: '1', title: 'Issue 1', status: 'Open', imageUrl: 'https://example.com/image1.jpg'),
+    Ticket(id: '2', title: 'Issue 2', status: 'In Progress', imageUrl: 'https://example.com/image2.jpg'),
+    Ticket(id: '3', title: 'Issue 3', status: 'Closed', imageUrl: 'https://example.com/image3.jpg'),
     // Add more tickets as needed
   ];
 
@@ -43,8 +42,9 @@ class Ticket {
   final String id;
   final String title;
   final String status;
+  final String imageUrl; // New field for image URL
 
-  Ticket({required this.id, required this.title, required this.status});
+  Ticket({required this.id, required this.title, required this.status, required this.imageUrl});
 }
 
 class TicketCard extends StatelessWidget {
@@ -54,22 +54,35 @@ class TicketCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      margin: const EdgeInsets.all(16),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Text(
-          '${ticket.title} - ${ticket.status}',
-          // ignore: prefer_const_constructors
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
+    return SizedBox(
+      width: 50, // Set card width as desired
+      height: 50, // Set card height as desired
+      child: Card(
+        elevation: 4,
+        margin: const EdgeInsets.all(16),
+        shadowColor: Colors.blueAccent,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.network(
+              ticket.imageUrl,
+              width: double.infinity,
+              height: 150, // Adjust image height as needed
+              fit: BoxFit.cover,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Text(
+                '${ticket.title} - ${ticket.status}',
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
-
-
