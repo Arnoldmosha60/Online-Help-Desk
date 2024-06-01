@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -17,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
       transform: Matrix4.translationValues(xOffset, yOffset, 0)
         ..scale(isDrawerOpen ? 0.85 : 1.00)
         ..rotateZ(isDrawerOpen ? -50 : 0),
-      duration: Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 200),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius:
@@ -26,17 +28,17 @@ class _HomeScreenState extends State<HomeScreen> {
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   isDrawerOpen
                       ? GestureDetector(
-                    child: Icon(Icons.arrow_back_ios),
+                    child: const Icon(Icons.arrow_back_ios),
                     onTap: () {
                       setState(() {
                         xOffset = 0;
@@ -46,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   )
                       : GestureDetector(
-                    child: Icon(Icons.menu),
+                    child: const Icon(Icons.menu),
                     onTap: () {
                       setState(() {
                         xOffset = 290;
@@ -55,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       });
                     },
                   ),
-                  Text(
+                  const Text(
                     'Beautiful Drawer',
                     style: TextStyle(
                         fontSize: 20,
@@ -66,10 +68,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
-            Column(
+            const Column(
               children: <Widget>[
                 NewPadding(
                   image1: 'assets/monkey.png',
@@ -132,7 +134,7 @@ class NewPadding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 35),
+      padding: const EdgeInsets.symmetric(horizontal: 35),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -147,14 +149,14 @@ class NewPadding extends StatelessWidget {
                   color: Colors.grey.withOpacity(0.1),
                   spreadRadius: 2,
                   blurRadius: 5,
-                  offset: Offset(0, 0),
+                  offset: const Offset(0, 0),
                 ),
               ],
             ),
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8),
+                  padding: const EdgeInsets.symmetric(vertical: 8),
                   child: Image(
                     height: 100,
                     width: 100,
@@ -163,7 +165,7 @@ class NewPadding extends StatelessWidget {
                 ),
                 Text(
                   text1,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black87,
                       fontSize: 15,
                       decoration: TextDecoration.none),
@@ -182,14 +184,14 @@ class NewPadding extends StatelessWidget {
                   color: Colors.grey.withOpacity(0.1),
                   spreadRadius: 2,
                   blurRadius: 5,
-                  offset: Offset(0, 0),
+                  offset: const Offset(0, 0),
                 ),
               ],
             ),
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8),
+                  padding: const EdgeInsets.symmetric(vertical: 8),
                   child: Image(
                     height: 100,
                     width: 100,
@@ -198,7 +200,7 @@ class NewPadding extends StatelessWidget {
                 ),
                 Text(
                   text2,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black87,
                       fontSize: 15,
                       decoration: TextDecoration.none),

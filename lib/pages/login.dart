@@ -1,7 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:new_helpdesk/pages/registration.dart';
+import 'dart:convert';
 
-import '../menu.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:new_helpdesk/auth/baseUrl.dart';
+import 'package:new_helpdesk/pages/dashboardscreen.dart';
+import 'package:new_helpdesk/pages/registration.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,6 +15,53 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  Future<void> _signin() async {
+    final Uri url = Uri.parse('${baseURL}api/auth/login');
+    final Map<String, String> data = {
+      'email': _emailController.text,
+      'password': _passwordController.text,
+    };
+
+    try {
+      final http.Response response = await http.post(
+        url,
+        body: jsonEncode(data),
+        headers: {'Content-Type': 'application/json'},
+      );
+
+      if (response.statusCode == 200) {
+        // Registration successful, navigate to dashboard screen
+        if (kDebugMode) {
+          print(response.body);
+        }
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Login Success.')),
+        );
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const Dashboard()),
+        );
+      } else {
+        // Registration failed, show error message
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Login failed. Please try again.')),
+        );
+      }
+    } catch (error) {
+      // Handle network or server errors
+      if (kDebugMode) {
+        print('Error occurred: $error');
+      }
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('An error occurred. Please try again later.')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -47,6 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                 Column(
                   children: <Widget>[
                     TextField(
+                      controller: _emailController,
                       decoration: InputDecoration(
                           hintText: "Email",
                           border: OutlineInputBorder(
@@ -58,6 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     const SizedBox(height: 20),
                     TextField(
+                      controller: _passwordController,
                       decoration: InputDecoration(
                         hintText: "Password",
                         border: OutlineInputBorder(
@@ -74,16 +127,7 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                     padding: const EdgeInsets.only(top: 3, left: 3),
                     child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MenuPage(),
-                          ),
-                        );
-
-
-                      },
+                      onPressed: _signin,
                       style: ElevatedButton.styleFrom(
                         shape: const StadiumBorder(),
                         padding: const EdgeInsets.symmetric(vertical: 16),
@@ -108,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                         spreadRadius: 1,
                         blurRadius: 1,
                         offset:
-                        const Offset(0, 1), // changes position of shadow
+                            const Offset(0, 1), // changes position of shadow
                       ),
                     ],
                   ),

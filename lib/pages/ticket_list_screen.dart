@@ -24,6 +24,8 @@ class TicketListScreen extends StatelessWidget {
     // Add more tickets as needed
   ];
 
+ TicketListScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -50,7 +52,7 @@ class Ticket {
 class TicketCard extends StatelessWidget {
   final Ticket ticket;
 
-  TicketCard({required this.ticket});
+  const TicketCard({super.key, required this.ticket});
 
   @override
   Widget build(BuildContext context) {

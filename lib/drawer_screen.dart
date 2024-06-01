@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class DrawerScreen extends StatefulWidget {
+  const DrawerScreen({super.key});
+
   @override
   _DrawerScreenState createState() => _DrawerScreenState();
 }
@@ -11,7 +13,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
     return Container(
       color: Colors.blueGrey,
       child: Padding(
-        padding: EdgeInsets.only(top: 50, left: 40, bottom: 70),
+        padding: const EdgeInsets.only(top: 50, left: 40, bottom: 70),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -20,16 +22,16 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 CircleAvatar(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
-                    child: Image(
+                    child: const Image(
                       fit: BoxFit.cover,
                       image: AssetImage('images/google.png'),
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
-                Text(
+                const Text(
                   'Mosallas Group',
                   style: TextStyle(
                       color: Colors.white,
@@ -38,7 +40,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 ),
               ],
             ),
-            Column(
+            const Column(
               children: <Widget>[
                 NewRow(
                   text: 'Settings',
@@ -90,7 +92,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   Icons.cancel,
                   color: Colors.white.withOpacity(0.5),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Text(
@@ -123,12 +125,12 @@ class NewRow extends StatelessWidget {
           icon,
           color: Colors.white,
         ),
-        SizedBox(
+        const SizedBox(
           width: 20,
         ),
         Text(
           text,
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
         )
       ],
     );
