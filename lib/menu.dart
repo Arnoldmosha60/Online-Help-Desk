@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
-
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:new_helpdesk/pages/dashboardscreen.dart';

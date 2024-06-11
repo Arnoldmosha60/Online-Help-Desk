@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:new_helpdesk/drawer_screen.dart';
-import 'package:new_helpdesk/pages/login.dart';
+import 'package:new_helpdesk/menu.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -17,8 +17,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: Stack(
           children: [
-            DrawerScreen(),
-            LoginPage()
+            MenuPage(),
           ],
         ),
       ),
