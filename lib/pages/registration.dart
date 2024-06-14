@@ -16,7 +16,6 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _fullnameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -25,7 +24,6 @@ class _SignupPageState extends State<SignupPage> {
   Future<void> _signUp() async {
     final Uri url = Uri.parse('${baseURL}api/auth/register');
     final Map<String, String> data = {
-      'username': _usernameController.text,
       'email': _emailController.text,
       'password': _passwordController.text,
       'fullname': _fullnameController.text,
@@ -48,7 +46,8 @@ class _SignupPageState extends State<SignupPage> {
       } else {
         // Registration failed, show error message
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Registration failed. Please try again.')),
+          const SnackBar(
+              content: Text('Registration failed. Please try again.')),
         );
       }
     } catch (error) {
@@ -57,7 +56,8 @@ class _SignupPageState extends State<SignupPage> {
         print('Error occurred: $error');
       }
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('An error occurred. Please try again later.')),
+        const SnackBar(
+            content: Text('An error occurred. Please try again later.')),
       );
     }
   }
@@ -110,29 +110,15 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                     const SizedBox(height: 20),
                     TextField(
-                      controller: _usernameController,
-                      decoration: InputDecoration(
-                        hintText: "Username",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18),
-                          borderSide: BorderSide.none,
-                        ),
-                        fillColor: Colors.blue.withOpacity(0.1),
-                        filled: true,
-                        prefixIcon: const Icon(Icons.person),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    TextField(
                       controller: _emailController,
                       decoration: InputDecoration(
                         hintText: "Email",
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18),
-                          borderSide: BorderSide.none),
-                          fillColor: Colors.blue.withOpacity(0.1),
-                          filled: true,
-                          prefixIcon: const Icon(Icons.email),
+                            borderRadius: BorderRadius.circular(18),
+                            borderSide: BorderSide.none),
+                        fillColor: Colors.blue.withOpacity(0.1),
+                        filled: true,
+                        prefixIcon: const Icon(Icons.email),
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -141,11 +127,11 @@ class _SignupPageState extends State<SignupPage> {
                       decoration: InputDecoration(
                         hintText: "Phone Number",
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18),
-                          borderSide: BorderSide.none),
-                          fillColor: Colors.blue.withOpacity(0.1),
-                          filled: true,
-                          prefixIcon: const Icon(Icons.person),
+                            borderRadius: BorderRadius.circular(18),
+                            borderSide: BorderSide.none),
+                        fillColor: Colors.blue.withOpacity(0.1),
+                        filled: true,
+                        prefixIcon: const Icon(Icons.person),
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -154,11 +140,11 @@ class _SignupPageState extends State<SignupPage> {
                       decoration: InputDecoration(
                         hintText: "Password",
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(18),
-                          borderSide: BorderSide.none),
-                          fillColor: Colors.blue.withOpacity(0.1),
-                          filled: true,
-                          prefixIcon: const Icon(Icons.password),
+                            borderRadius: BorderRadius.circular(18),
+                            borderSide: BorderSide.none),
+                        fillColor: Colors.blue.withOpacity(0.1),
+                        filled: true,
+                        prefixIcon: const Icon(Icons.password),
                       ),
                       obscureText: true,
                     ),
@@ -184,7 +170,8 @@ class _SignupPageState extends State<SignupPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const LoginPage()),
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage()),
                         );
                       },
                       child: const Text(

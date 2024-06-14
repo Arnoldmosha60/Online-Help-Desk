@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_helpdesk/menu.dart';
+import 'package:new_helpdesk/pages/login.dart';
 
 
 void main() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: Stack(
           children: [
-            MenuPage(),
+            LoginPage(),
           ],
         ),
       ),

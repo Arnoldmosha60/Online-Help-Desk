@@ -17,6 +17,7 @@ dependencies:
 
   http: ^1.2.0
   syncfusion_flutter_charts: ^21.2.4
+  shared_preferences: ^2.2.3
 
 
 dev_dependencies:

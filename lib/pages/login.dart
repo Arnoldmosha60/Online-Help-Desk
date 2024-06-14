@@ -1,10 +1,12 @@
-import 'dart:convert';
+// ignore_for_file: use_build_context_synchronously
 
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:new_helpdesk/auth/baseUrl.dart';
-import 'package:new_helpdesk/pages/dashboardscreen.dart';
+import 'package:new_helpdesk/menu.dart';
 import 'package:new_helpdesk/pages/registration.dart';
 
 class LoginPage extends StatefulWidget {
@@ -33,21 +35,27 @@ class _LoginPageState extends State<LoginPage> {
       );
 
       if (response.statusCode == 200) {
-        // Registration successful, navigate to dashboard screen
-        if (kDebugMode) {
-          print(response.body);
-        }
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Login Success.')),
-        );
+        final Map<String, dynamic> responseData = jsonDecode(response.body);
+
+        // Store token and user information locally
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString('token', responseData['token']);
+        await prefs.setString('user', jsonEncode(responseData['user']));
+
+        // Navigate to dashboard or home screen on successful login
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const Dashboard()),
+          MaterialPageRoute(builder: (context) => const MenuPage()),
+        );
+
+        // Show success message
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Login Success')),
         );
       } else {
-        // Registration failed, show error message
+        // Show error message for invalid credentials
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Login failed. Please try again.')),
+          const SnackBar(content: Text('Invalid credentials. Please try again.')),
         );
       }
     } catch (error) {
@@ -55,9 +63,12 @@ class _LoginPageState extends State<LoginPage> {
       if (kDebugMode) {
         print('Error occurred: $error');
       }
-      // ignore: use_build_context_synchronously
+
+      // Show error message
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('An error occurred. Please try again later.')),
+        const SnackBar(
+          content: Text('An error occurred. Please try again later.'),
+        ),
       );
     }
   }
