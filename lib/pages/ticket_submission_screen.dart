@@ -28,7 +28,8 @@ class _TicketSubmissionScreenState extends State<TicketSubmissionScreen> {
 
     Map<String, dynamic> userData = jsonDecode(user!);
 
-    final Uri url = Uri.parse('${baseURL}api/helpdesk/issues/'); // Adjust endpoint URL
+    final Uri url =
+        Uri.parse('${baseURL}api/helpdesk/issues/'); 
     final Map<String, dynamic> data = {
       'issue_description': _issueController.text,
       'category': _selectedCategory,

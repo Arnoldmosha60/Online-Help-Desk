@@ -19,7 +19,7 @@ class _MenuPageState extends State<MenuPage> {
 
   final List<Widget> _screens = [
     const Dashboard(), 
-    TicketListScreen(),
+    const TicketListScreen(),
     const TicketSubmissionScreen(),
   ];
 
