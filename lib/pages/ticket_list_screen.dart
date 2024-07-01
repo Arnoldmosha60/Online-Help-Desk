@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:new_helpdesk/auth/baseUrl.dart';
+import 'package:new_helpdesk/pages/issue_response_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:intl/intl.dart';
 
 void main() => runApp(const TicketListApp());
 
@@ -86,6 +88,7 @@ class _TicketListScreenState extends State<TicketListScreen> {
 }
 
 class Ticket {
+  final String id;
   final String issueDescription;
   final String category;
   final String urgencyLevel;
@@ -93,6 +96,7 @@ class Ticket {
   final bool status;
 
   Ticket({
+    required this.id,
     required this.issueDescription,
     required this.category,
     required this.urgencyLevel,
@@ -102,11 +106,12 @@ class Ticket {
 
   factory Ticket.fromJson(Map<String, dynamic> json) {
     return Ticket(
+      id: json['id'],
       issueDescription: json['issue_description'],
       category: json['category'],
       urgencyLevel: json['urgency_level'],
       submittedOn: json['submitted_on'],
-      status: json['status'],
+      status: json['status'], 
     );
   }
 }
@@ -155,7 +160,7 @@ class TicketCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Submitted On: ${ticket.submittedOn}',
+                  'Submitted On: ${DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.parse(ticket.submittedOn))}',
                   style: const TextStyle(
                     fontSize: 16,
                     color: Colors.grey,
@@ -169,11 +174,47 @@ class TicketCard extends StatelessWidget {
                     color: Colors.grey,
                   ),
                 ),
+                if (ticket.status)
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  IssueResponseScreen(ticketId: ticket.id),
+                            ),
+                          );
+                        },
+                        child: const Text('View Responses'),
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class IssueResponse {
+  final String response;
+  final String replyDate;
+
+  IssueResponse({
+    required this.response,
+    required this.replyDate,
+  });
+
+  factory IssueResponse.fromJson(Map<String, dynamic> json) {
+    return IssueResponse(
+      response: json['response'],
+      replyDate: json['reply_date'],
     );
   }
 }
