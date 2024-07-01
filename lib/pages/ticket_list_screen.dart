@@ -77,11 +77,10 @@ class _TicketListScreenState extends State<TicketListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: tickets.length,
-      itemBuilder: (context, index) {
-        return TicketCard(ticket: tickets[index]);
-      },
+    return SingleChildScrollView(
+      child: Column(
+        children: tickets.map((ticket) => TicketCard(ticket: ticket)).toList(),
+      ),
     );
   }
 }
