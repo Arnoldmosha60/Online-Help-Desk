@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:new_helpdesk/auth/baseUrl.dart';
 import 'package:intl/intl.dart';
-import 'package:new_helpdesk/pages/ticket_list_screen.dart';
 
 class IssueResponseScreen extends StatefulWidget {
   final String ticketId;
@@ -139,13 +138,13 @@ class _IssueResponseScreenState extends State<IssueResponseScreen> {
                             ElevatedButton(
                               onPressed: () {
                                 submitFeedback(issueResponses[index].id, feedbackController.text);
-                                Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  TicketListScreen(),
-                            ),
-                          );
+                          //       Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) =>
+                          //         TicketListScreen(),
+                          //   ),
+                          // );
                               },
                               child: const Text('Submit Feedback'),
                             ),

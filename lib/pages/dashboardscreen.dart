@@ -73,7 +73,7 @@ class _DashboardState extends State<Dashboard> {
                           decoration: const BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage(
-                                  'assets/images/bg_image.jpg'), // Replace with your background image asset
+                                  'assets/images/img2.jpg'), // Replace with your background image asset
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -85,7 +85,7 @@ class _DashboardState extends State<Dashboard> {
                           decoration: const BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage(
-                                  'assets/images/bg_image.jpg'), // Replace with your background image asset
+                                  'assets/images/img3.jpg'), // Replace with your background image asset
                               fit: BoxFit.cover,
                             ),
                           ),
